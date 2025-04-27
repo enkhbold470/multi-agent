@@ -1,6 +1,14 @@
 "use client";
 
-import { Users, DollarSign, TrendingUp, Linkedin } from "lucide-react";
+import {
+  Users,
+  DollarSign,
+  Linkedin,
+  Calendar,
+  Globe,
+  BarChart3,
+} from "lucide-react";
+import Image from "next/image";
 import type { Startup } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,20 +30,16 @@ export default function StartupDetailsModal({
   isOpen,
   onClose,
 }: StartupDetailsModalProps) {
-  const generateGrowthData = () => {
-    const baseValue = startup.metrics.mrr * 0.7;
-    return Array(6)
-      .fill(0)
-      .map((_, i) => {
-        const randomFactor = ((startup.id.charCodeAt(0) + i) % 10) / 100;
-        return Math.round(
-          baseValue + baseValue * 0.1 * i + randomFactor * baseValue
-        );
-      });
+  // Format funding to display in millions or billions
+  const formatFunding = (funding: number) => {
+    if (funding >= 1000000000) {
+      return `$${(funding / 1000000000).toFixed(1)}B`;
+    }
+    return `$${(funding / 1000000).toFixed(1)}M`;
   };
 
-  const growthData = generateGrowthData();
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+  // Extract founder names from the comma-separated list
+  const foundersList = startup.Founders.split(", ");
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -43,22 +47,14 @@ export default function StartupDetailsModal({
         <DialogHeader>
           <div className="flex items-center">
             <div className="w-12 h-12 bg-gray-100 rounded-md flex items-center justify-center mr-3">
-              {startup.logo ? (
-                <img
-                  src={startup.logo || "/placeholder.svg"}
-                  alt={`${startup.name} logo`}
-                  className="w-10 h-10"
-                />
-              ) : (
-                <span className="font-bold text-gray-500">
-                  {startup.name.charAt(0)}
-                </span>
-              )}
+              <span className="font-bold text-gray-500">
+                {startup.Name.charAt(0)}
+              </span>
             </div>
             <div>
-              <DialogTitle className="text-xl">{startup.name}</DialogTitle>
+              <DialogTitle className="text-xl">{startup.Name}</DialogTitle>
               <DialogDescription className="text-sm italic">
-                {startup.tagline}
+                {startup.Industry}
               </DialogDescription>
             </div>
           </div>
@@ -67,7 +63,7 @@ export default function StartupDetailsModal({
         <div className="space-y-6 py-4">
           <div>
             <h3 className="text-sm font-medium mb-2">About</h3>
-            <p className="text-sm text-gray-600">{startup.description}</p>
+            <p className="text-sm text-gray-600">{startup.Description}</p>
           </div>
 
           <div>
@@ -76,71 +72,75 @@ export default function StartupDetailsModal({
               <div className="bg-gray-50 p-3 rounded-md">
                 <div className="text-xs text-gray-500 mb-1 flex items-center">
                   <DollarSign className="h-3 w-3 mr-1" />
-                  MRR
+                  Funding
                 </div>
                 <div className="font-medium">
-                  ${startup.metrics.mrr.toLocaleString()}
+                  {formatFunding(startup.funding)}
                 </div>
               </div>
               <div className="bg-gray-50 p-3 rounded-md">
                 <div className="text-xs text-gray-500 mb-1 flex items-center">
                   <Users className="h-3 w-3 mr-1" />
-                  Team Size
+                  Stage
                 </div>
-                <div className="font-medium">
-                  {startup.metrics.teamSize} people
-                </div>
+                <div className="font-medium">{startup.stage}</div>
               </div>
               <div className="bg-gray-50 p-3 rounded-md">
                 <div className="text-xs text-gray-500 mb-1 flex items-center">
-                  <TrendingUp className="h-3 w-3 mr-1" />
-                  Growth
+                  <BarChart3 className="h-3 w-3 mr-1" />
+                  Match Score
                 </div>
-                <div className="font-medium">{startup.metrics.growth}% MoM</div>
+                <div className="font-medium">{startup.score}%</div>
               </div>
             </div>
 
-            <div className="h-32 relative">
-              <h4 className="text-xs font-medium mb-2">Last 6 Months MRR</h4>
-              <div className="flex items-end h-24 w-full">
-                {growthData.map((value, index) => (
-                  <div
-                    key={index}
-                    className="flex-1 flex flex-col items-center"
-                  >
-                    <div
-                      className="w-full bg-emerald-200 rounded-t"
-                      style={{
-                        height: `${(value / Math.max(...growthData)) * 100}%`,
-                        maxWidth: "20px",
-                        margin: "0 auto",
-                      }}
-                    ></div>
-                    <div className="text-xs text-gray-500 mt-1">
-                      {months[index]}
-                    </div>
-                  </div>
-                ))}
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="bg-gray-50 p-3 rounded-md">
+                <div className="text-xs text-gray-500 mb-1 flex items-center">
+                  <Calendar className="h-3 w-3 mr-1" />
+                  Launch Date
+                </div>
+                <div className="font-medium">{startup["Launch Date"]}</div>
               </div>
+              <div className="bg-gray-50 p-3 rounded-md">
+                <div className="text-xs text-gray-500 mb-1 flex items-center">
+                  <Globe className="h-3 w-3 mr-1" />
+                  Location
+                </div>
+                <div className="font-medium">{startup.Location}</div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 p-3 rounded-md mb-6">
+              <div className="text-xs text-gray-500 mb-1">Early Metrics</div>
+              <div className="font-medium text-sm">
+                {startup["Early Metrics"]}
+              </div>
+            </div>
+
+            <div className="bg-gray-50 p-3 rounded-md">
+              <div className="text-xs text-gray-500 mb-1">Press</div>
+              <div className="font-medium text-sm">{startup.Press}</div>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-medium mb-3">Team</h3>
+            <h3 className="text-sm font-medium mb-3">Founders</h3>
             <div className="space-y-3">
-              {startup.team.map((member, index) => (
+              {foundersList.map((founder, index) => (
                 <div key={index} className="flex items-center">
                   <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-2">
                     <span className="text-xs font-medium">
-                      {member.name.charAt(0)}
+                      {founder.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <div className="text-sm font-medium">{member.name}</div>
-                    <div className="text-xs text-gray-500">{member.role}</div>
+                    <div className="text-sm font-medium">{founder}</div>
                   </div>
                   <a
-                    href="#"
+                    href={startup.Founder_LinkedIn[founder] || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="ml-auto text-gray-400 hover:text-gray-600"
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -152,7 +152,12 @@ export default function StartupDetailsModal({
           </div>
 
           <div className="flex gap-3 pt-2">
-            <Button className="flex-1">Contact Founder</Button>
+            <Button
+              className="flex-1"
+              onClick={() => window.open(startup.Website, "_blank")}
+            >
+              Visit Website
+            </Button>
             <Button variant="outline" className="flex-1">
               Save to Watchlist
             </Button>
