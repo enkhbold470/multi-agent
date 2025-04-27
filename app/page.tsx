@@ -1,6 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -52,6 +59,25 @@ export default function LandingPage() {
             >
               Dashboard
             </Link>
+            <div className="flex justify-end items-center p-4 gap-4 h-16">
+              <SignedOut>
+                <Link
+                  href="/sign-in"
+                  className="px-4 py-2 text-sm text-gray-700 hover:text-purple-600 font-medium rounded-md"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/sign-up"
+                  className="px-4 py-2 bg-purple-600 text-white rounded-md text-sm font-medium hover:bg-purple-700 transition-colors"
+                >
+                  Sign Up
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
           </div>
         </div>
       </header>
