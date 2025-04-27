@@ -17,38 +17,38 @@ export default function LandingPage() {
     <div className="min-h-screen flex flex-col">
       <header className="bg-white sticky top-0 z-50 border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="bg-blue-600 text-white w-8 h-8 rounded-md flex items-center justify-center">
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="bg-purple-600 text-white w-8 h-8 rounded-md flex items-center justify-center">
               <TrendingUp className="h-5 w-5" />
             </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-500 text-transparent bg-clip-text">
               Rest&Vest
             </h1>
-          </div>
+          </Link>
           <div className="flex items-center space-x-6">
             <nav className="hidden md:flex space-x-6">
               <a
                 href="#features"
-                className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-purple-600 transition-colors"
               >
                 How It Works
               </a>
               <a
                 href="#testimonials"
-                className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-purple-600 transition-colors"
               >
                 Success Stories
               </a>
               <a
                 href="#cta"
-                className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-purple-600 transition-colors"
               >
                 Get Started
               </a>
             </nav>
             <Link
               href="/dashboard"
-              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md text-sm font-medium hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md hover:shadow-lg"
+              className="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-md text-sm font-medium hover:from-purple-700 hover:to-indigo-600 transition-all shadow-md hover:shadow-lg"
             >
               Dashboard
             </Link>
@@ -57,19 +57,19 @@ export default function LandingPage() {
       </header>
 
       <main>
-        <section className="relative py-20 overflow-hidden bg-gradient-to-b from-white to-blue-50">
+        <section className="relative py-20 overflow-hidden bg-gradient-to-b from-white to-purple-50">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-            <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
-            <div className="absolute top-1/3 -left-24 w-80 h-80 rounded-full bg-indigo-100 opacity-40 blur-3xl"></div>
-            <div className="absolute -bottom-32 left-1/2 w-96 h-96 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
+            <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-purple-100 opacity-50 blur-3xl"></div>
+            <div className="absolute top-1/3 -left-24 w-80 h-80 rounded-full bg-teal-100 opacity-40 blur-3xl"></div>
+            <div className="absolute -bottom-32 left-1/2 w-96 h-96 rounded-full bg-indigo-100 opacity-50 blur-3xl"></div>
           </div>
 
           <div className="container mx-auto px-6 flex flex-col md:flex-row items-center relative z-10">
             <div className="md:w-1/2 md:pr-12 mb-10 md:mb-0 text-center md:text-left">
-              <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6">
+              <div className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
                 AI-Powered Investment Matching
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-900 text-transparent bg-clip-text">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-900 text-transparent bg-clip-text">
                 Find Your Perfect Startup Investment Match
               </h2>
               <p className="text-lg text-gray-600 mb-8 max-w-2xl md:mx-0 mx-auto">
@@ -80,14 +80,14 @@ export default function LandingPage() {
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
                 <Link
                   href="/dashboard"
-                  className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-md font-medium hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center"
+                  className="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-md font-medium hover:from-purple-700 hover:to-indigo-600 transition-all shadow-md hover:shadow-lg flex items-center justify-center"
                 >
                   Get Matched Now
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <a
                   href="#features"
-                  className="px-8 py-3 bg-white text-blue-600 border border-blue-200 rounded-md font-medium hover:bg-blue-50 transition-colors flex items-center justify-center"
+                  className="px-8 py-3 bg-white text-purple-600 border border-purple-200 rounded-md font-medium hover:bg-purple-50 transition-colors flex items-center justify-center"
                 >
                   Learn More
                 </a>
@@ -95,15 +95,15 @@ export default function LandingPage() {
 
               <div className="mt-10 pt-6 border-t border-gray-100 flex flex-wrap justify-center md:justify-start">
                 <div className="text-gray-500 text-sm flex items-center mr-6 mb-4">
-                  <Users className="h-4 w-4 mr-2 text-blue-500" />
+                  <Users className="h-4 w-4 mr-2 text-purple-500" />
                   <span>10,000+ investors</span>
                 </div>
                 <div className="text-gray-500 text-sm flex items-center mr-6 mb-4">
-                  <Star className="h-4 w-4 mr-2 text-blue-500" />
+                  <Star className="h-4 w-4 mr-2 text-purple-500" />
                   <span>4.9/5 rating</span>
                 </div>
                 <div className="text-gray-500 text-sm flex items-center mb-4">
-                  <TrendingUp className="h-4 w-4 mr-2 text-blue-500" />
+                  <TrendingUp className="h-4 w-4 mr-2 text-purple-500" />
                   <span>$500M+ invested</span>
                 </div>
               </div>
@@ -122,12 +122,12 @@ export default function LandingPage() {
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white rounded-lg p-4 shadow-lg">
                 <div className="flex items-center space-x-2">
-                  <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
-                    <TrendingUp className="h-5 w-5 text-green-600" />
+                  <div className="h-10 w-10 rounded-full bg-teal-100 flex items-center justify-center">
+                    <TrendingUp className="h-5 w-5 text-teal-600" />
                   </div>
                   <div>
                     <p className="text-sm font-medium">Investment Match</p>
-                    <p className="text-green-600 font-bold">94% Compatible</p>
+                    <p className="text-teal-600 font-bold">94% Compatible</p>
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function LandingPage() {
         <section id="features" className="py-24 bg-white relative">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
+              <div className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-4">
                 Our Process
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -152,8 +152,8 @@ export default function LandingPage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                  <Search className="h-8 w-8 text-blue-600" />
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                  <Search className="h-8 w-8 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
                   Define Your Criteria
@@ -163,7 +163,7 @@ export default function LandingPage() {
                   region, and expected returns to find your ideal matches.
                 </p>
                 <div className="pt-4 border-t border-gray-100">
-                  <span className="text-blue-600 font-medium text-sm flex items-center">
+                  <span className="text-purple-600 font-medium text-sm flex items-center">
                     Step 1 <ArrowRight className="ml-2 h-3 w-3" />
                   </span>
                 </div>
@@ -188,8 +188,8 @@ export default function LandingPage() {
               </div>
 
               <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-                  <BarChart2 className="h-8 w-8 text-purple-600" />
+                <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                  <BarChart2 className="h-8 w-8 text-teal-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">
                   Data-Driven Insights
@@ -199,7 +199,7 @@ export default function LandingPage() {
                   investments to make informed decisions backed by data.
                 </p>
                 <div className="pt-4 border-t border-gray-100">
-                  <span className="text-purple-600 font-medium text-sm flex items-center">
+                  <span className="text-teal-600 font-medium text-sm flex items-center">
                     Step 3 <ArrowRight className="ml-2 h-3 w-3" />
                   </span>
                 </div>
@@ -210,11 +210,11 @@ export default function LandingPage() {
 
         <section
           id="testimonials"
-          className="py-24 bg-gradient-to-b from-blue-50 to-white"
+          className="py-24 bg-gradient-to-b from-purple-50 to-white"
         >
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
+              <div className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-4">
                 Success Stories
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -227,10 +227,10 @@ export default function LandingPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-xl shadow-md">
+              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center mb-4">
-                  <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                    <span className="text-blue-600 font-bold">JD</span>
+                  <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                    <span className="text-purple-600 font-bold">JD</span>
                   </div>
                   <div>
                     <h4 className="font-semibold">John Davidson</h4>
@@ -252,7 +252,7 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-xl shadow-md">
+              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center mb-4">
                   <div className="h-12 w-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
                     <span className="text-indigo-600 font-bold">SL</span>
@@ -277,10 +277,10 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-xl shadow-md">
+              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center mb-4">
-                  <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
-                    <span className="text-purple-600 font-bold">MJ</span>
+                  <div className="h-12 w-12 rounded-full bg-teal-100 flex items-center justify-center mr-4">
+                    <span className="text-teal-600 font-bold">MJ</span>
                   </div>
                   <div>
                     <h4 className="font-semibold">Michael Johnson</h4>
@@ -307,7 +307,7 @@ export default function LandingPage() {
 
         <section
           id="cta"
-          className="py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white"
+          className="py-24 bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
         >
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 max-w-3xl mx-auto">
@@ -319,7 +319,7 @@ export default function LandingPage() {
             </p>
             <Link
               href="/dashboard"
-              className="px-10 py-4 bg-white text-blue-600 rounded-md font-medium hover:bg-blue-50 transition-colors inline-flex items-center shadow-lg hover:shadow-xl"
+              className="px-10 py-4 bg-white text-purple-600 rounded-md font-medium hover:bg-purple-50 transition-colors inline-flex items-center shadow-lg hover:shadow-xl"
             >
               Get Started Now
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -335,12 +335,14 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="bg-blue-600 text-white w-8 h-8 rounded-md flex items-center justify-center">
+              <Link href="/" className="flex items-center space-x-2 mb-4">
+                <div className="bg-purple-600 text-white w-8 h-8 rounded-md flex items-center justify-center">
                   <TrendingUp className="h-5 w-5" />
                 </div>
-                <h2 className="text-xl font-bold">Rest&Vest</h2>
-              </div>
+                <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-500 text-transparent bg-clip-text">
+                  Rest&Vest
+                </h2>
+              </Link>
               <p className="text-gray-600 mb-6">
                 Connecting investors with the perfect startups using AI-powered
                 matching.
@@ -348,7 +350,7 @@ export default function LandingPage() {
               <div className="flex space-x-4">
                 <a
                   href="#"
-                  className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                  className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors"
                 >
                   <svg
                     className="h-5 w-5"
@@ -360,7 +362,7 @@ export default function LandingPage() {
                 </a>
                 <a
                   href="#"
-                  className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                  className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors"
                 >
                   <svg
                     className="h-5 w-5"
@@ -372,7 +374,7 @@ export default function LandingPage() {
                 </a>
                 <a
                   href="#"
-                  className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                  className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors"
                 >
                   <svg
                     className="h-5 w-5"
@@ -389,27 +391,42 @@ export default function LandingPage() {
               <h3 className="font-semibold text-gray-900 mb-4">Product</h3>
               <ul className="space-y-3 text-gray-600">
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Features
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Pricing
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Case Studies
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Reviews
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Updates
                   </a>
                 </li>
@@ -420,27 +437,42 @@ export default function LandingPage() {
               <h3 className="font-semibold text-gray-900 mb-4">Company</h3>
               <ul className="space-y-3 text-gray-600">
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Team
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Careers
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Press
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Contact
                   </a>
                 </li>
@@ -451,27 +483,42 @@ export default function LandingPage() {
               <h3 className="font-semibold text-gray-900 mb-4">Resources</h3>
               <ul className="space-y-3 text-gray-600">
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Newsletter
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Events
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Help Center
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors"
+                  >
                     Tutorials
                   </a>
                 </li>
@@ -484,13 +531,13 @@ export default function LandingPage() {
               © {new Date().getFullYear()} Rest&Vest. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-500">
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a href="#" className="hover:text-purple-600 transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a href="#" className="hover:text-purple-600 transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a href="#" className="hover:text-purple-600 transition-colors">
                 Cookie Policy
               </a>
             </div>

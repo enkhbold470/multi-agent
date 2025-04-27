@@ -56,15 +56,16 @@ export default function LoadingPage() {
   }, [router, thinkingSteps.length]);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 p-4">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-purple-50 to-indigo-50 p-4">
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold text-center mb-6">
+        <h1 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-purple-600 to-indigo-500 text-transparent bg-clip-text">
           Finding Your Perfect Matches
         </h1>
 
         <div className="flex justify-center mb-8">
-          <div className="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center">
-            <BrainCircuit className="h-12 w-12 text-blue-500 animate-pulse" />
+          <div className="h-24 w-24 rounded-full bg-purple-50 flex items-center justify-center relative">
+            <div className="absolute w-full h-full rounded-full border-4 border-purple-200 border-l-purple-500 animate-spin"></div>
+            <BrainCircuit className="h-12 w-12 text-purple-500 animate-pulse" />
           </div>
         </div>
 
@@ -74,14 +75,14 @@ export default function LoadingPage() {
               key={index}
               className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
                 index === currentStep
-                  ? "bg-blue-50 border border-blue-100"
+                  ? "bg-purple-50 border border-purple-100"
                   : index < currentStep
                   ? "text-gray-400"
                   : "text-gray-300"
               }`}
             >
               <div
-                className={`${index === currentStep ? "text-blue-500" : ""}`}
+                className={`${index === currentStep ? "text-purple-500" : ""}`}
               >
                 {step.icon}
               </div>
@@ -90,7 +91,7 @@ export default function LoadingPage() {
                 {index === currentStep && dots}
               </span>
               {index < currentStep && (
-                <span className="ml-auto text-green-500">✓</span>
+                <span className="ml-auto text-teal-500">✓</span>
               )}
             </div>
           ))}
