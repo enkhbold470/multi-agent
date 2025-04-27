@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronRight, X, TrendingUp } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
+import Image from "next/image";
 import StartupCard from "@/components/startup-card";
 import PreferencesPanel from "@/components/preferences-panel";
 import StartupDetailsModal from "@/components/startup-details-modal";
-import { type Startup, startups } from "@/lib/data";
+import { type Startup } from "@/lib/data";
 import Link from "next/link";
 
 export default function Dashboard() {
@@ -16,42 +17,72 @@ export default function Dashboard() {
   const [selectedStartup, setSelectedStartup] = useState<Startup | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fetchTimestamp, setFetchTimestamp] = useState<string>("");
 
   useEffect(() => {
     const savedFilters = localStorage.getItem("investorFilters");
     if (savedFilters) {
       const filters = JSON.parse(savedFilters);
-      applyFiltersToStartups(filters);
+      fetchStartups(filters);
       localStorage.removeItem("investorFilters");
-      setHasSearched(true);
     }
   }, []);
 
-  const applyFiltersToStartups = (filters: any) => {
-    const filtered = startups.filter((startup) => {
-      if (
-        filters.industries.length > 0 &&
-        !filters.industries.includes(startup.industry)
-      ) {
-        return false;
+  const fetchStartups = async (filters: any) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      if (filters.industries) {
+        filters.industry = filters.industries;
+        delete filters.industries;
       }
 
-      if (filters.stage && startup.stage !== filters.stage) {
-        return false;
+      console.log("Fetching startups with filters:", filters);
+
+      const response = await fetch(
+        "https://starfish-app-rpg67.ondigitalocean.app/api/companies",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(filters),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch startups: ${response.status} ${response.statusText}`
+        );
       }
 
-      if (filters.region && startup.region !== filters.region) {
-        return false;
+      const data = await response.json();
+
+      if (!Array.isArray(data)) {
+        console.error("Invalid API response format:", data);
+        throw new Error("Received invalid data format from API");
       }
 
-      if (filters.minTraction && startup.metrics.mrr < filters.minTraction) {
-        return false;
-      }
-
-      return true;
-    });
-
-    setFilteredStartups(filtered);
+      console.log("Received startups:", data);
+      const now = new Date();
+      setFetchTimestamp(now.toLocaleString());
+      const sortedStartups = [...data].sort((a, b) => b.score - a.score);
+      setFilteredStartups(sortedStartups);
+      setHasSearched(true);
+    } catch (err) {
+      console.error("Error fetching startups:", err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to fetch startups. Please try again."
+      );
+      setFilteredStartups([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const togglePreferences = () => {
@@ -59,7 +90,7 @@ export default function Dashboard() {
   };
 
   const handleGetRecommendations = (filters: any) => {
-    router.push("/loading");
+    fetchStartups(filters);
   };
 
   const viewStartupDetails = (startup: Startup) => {
@@ -75,9 +106,7 @@ export default function Dashboard() {
     <main className="min-h-screen flex flex-col bg-gray-50">
       <header className="h-16 border-b bg-white flex items-center justify-between px-6 fixed top-0 left-0 right-0 z-10 shadow-sm">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="bg-purple-600 text-white w-8 h-8 rounded-md flex items-center justify-center">
-            <TrendingUp className="h-5 w-5" />
-          </div>
+          <Image src="/restnvest-logo.png" alt="Logo" width={50} height={50} />
           <h1 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-indigo-500 text-transparent bg-clip-text">
             Rest&Vest
           </h1>
@@ -107,11 +136,7 @@ export default function Dashboard() {
             </h2>
             <PreferencesPanel
               onGetRecommendations={(filters) => {
-                localStorage.setItem(
-                  "investorFilters",
-                  JSON.stringify(filters)
-                );
-                router.push("/loading");
+                fetchStartups(filters);
               }}
             />
           </div>
@@ -138,22 +163,35 @@ export default function Dashboard() {
               Recommended Startups
             </h2>
 
-            {filteredStartups.length > 0 ? (
+            {error && (
+              <div className="p-4 bg-red-50 text-red-600 rounded-md mb-4">
+                <p className="font-medium">Error:</p>
+                <p>{error}</p>
+              </div>
+            )}
+
+            {isLoading ? (
+              <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+              </div>
+            ) : filteredStartups.length > 0 ? (
               <div className="space-y-4">
-                {filteredStartups.map((startup) => (
+                {fetchTimestamp && (
+                  <div className="text-sm text-gray-500 italic">
+                    Results fetched at: {fetchTimestamp}
+                  </div>
+                )}
+                {filteredStartups.map((startup, index) => (
                   <StartupCard
-                    key={startup.id}
+                    key={index}
                     startup={startup}
+                    rank={index + 1}
+                    timestamp={fetchTimestamp}
                     onViewDetails={() => viewStartupDetails(startup)}
                   />
                 ))}
-                <div className="flex justify-center mt-8">
-                  <button className="px-5 py-2.5 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors shadow-sm">
-                    Load More Startups
-                  </button>
-                </div>
               </div>
-            ) : (
+            ) : hasSearched ? (
               <div className="flex flex-col items-center justify-center py-12 text-center bg-white rounded-xl shadow-sm p-8">
                 <div className="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mb-4">
                   <ChevronRight className="h-8 w-8 text-purple-500" />
@@ -166,7 +204,7 @@ export default function Dashboard() {
                   your investment criteria.
                 </p>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       )}

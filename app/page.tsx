@@ -25,9 +25,12 @@ export default function LandingPage() {
       <header className="bg-white sticky top-0 z-50 border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="bg-purple-600 text-white w-8 h-8 rounded-md flex items-center justify-center">
-              <TrendingUp className="h-5 w-5" />
-            </div>
+            <Image
+              src="/restnvest-logo.png"
+              alt="Logo"
+              width={50}
+              height={50}
+            />
             <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-500 text-transparent bg-clip-text">
               Rest&Vest
             </h1>
@@ -129,7 +132,14 @@ export default function LandingPage() {
                   <span>4.9/5 rating</span>
                 </div>
                 <div className="text-gray-500 text-sm flex items-center mb-4">
-                  <TrendingUp className="h-4 w-4 mr-2 text-purple-500" />
+                  <div className="h-4 w-4 mr-2 text-purple-500 overflow-hidden flex items-center justify-center">
+                    <Image
+                      src="/restnvest-logo.png"
+                      alt="Logo"
+                      width={16}
+                      height={16}
+                    />
+                  </div>
                   <span>$500M+ invested</span>
                 </div>
               </div>
@@ -148,8 +158,13 @@ export default function LandingPage() {
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white rounded-lg p-4 shadow-lg">
                 <div className="flex items-center space-x-2">
-                  <div className="h-10 w-10 rounded-full bg-teal-100 flex items-center justify-center">
-                    <TrendingUp className="h-5 w-5 text-teal-600" />
+                  <div className="h-10 w-10 rounded-full bg-teal-100 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/restnvest-logo.png"
+                      alt="Logo"
+                      width={20}
+                      height={20}
+                    />
                   </div>
                   <div>
                     <p className="text-sm font-medium">Investment Match</p>
@@ -362,9 +377,12 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <Link href="/" className="flex items-center space-x-2 mb-4">
-                <div className="bg-purple-600 text-white w-8 h-8 rounded-md flex items-center justify-center">
-                  <TrendingUp className="h-5 w-5" />
-                </div>
+                <Image
+                  src="/restnvest-logo.png"
+                  alt="Logo"
+                  width={50}
+                  height={50}
+                />
                 <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-500 text-transparent bg-clip-text">
                   Rest&Vest
                 </h2>

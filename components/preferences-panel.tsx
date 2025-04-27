@@ -14,27 +14,39 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const industries = [
-  { id: "saas", label: "SaaS" },
-  { id: "healthtech", label: "HealthTech" },
-  { id: "fintech", label: "FinTech" },
-  { id: "ecommerce", label: "E-Commerce" },
-  { id: "ai", label: "AI/ML" },
-  { id: "edtech", label: "EdTech" },
+  { id: "Art Restoration", label: "Art Restoration" },
+  { id: "Artificial Intelligence", label: "Artificial Intelligence" },
+  { id: "Autonomous Vehicles", label: "Autonomous Vehicles" },
+  { id: "Beverage", label: "Beverage" },
+  { id: "Clean Energy", label: "Clean Energy" },
+  { id: "Consumer Goods", label: "Consumer Goods" },
+  { id: "Data Integration", label: "Data Integration" },
+  { id: "Developer Tools", label: "Developer Tools" },
+  { id: "Marketing", label: "Marketing" },
+  { id: "Networking", label: "Networking" },
+  { id: "No-Code", label: "No-Code" },
+  { id: "SaaS", label: "SaaS" },
+  { id: "Search", label: "Search" },
+  { id: "Security", label: "Security" },
+  { id: "Transportation", label: "Transportation" },
+  { id: "Voice Technology", label: "Voice Technology" },
 ];
 
 const regions = [
-  { value: "us", label: "United States" },
-  { value: "eu", label: "Europe" },
-  { value: "asia", label: "Asia" },
-  { value: "latam", label: "Latin America" },
-  { value: "africa", label: "Africa" },
-  { value: "global", label: "Global" },
+  { value: "San Francisco, CA", label: "San Francisco" },
+  { value: "New York, NY", label: "New York" },
+  { value: "Austin, TX", label: "Austin" },
+  { value: "Boston, MA", label: "Boston" },
+  { value: "London, UK", label: "London" },
+  { value: "Global", label: "Global" },
 ];
 
 const stages = [
-  { value: "pre-seed", label: "Pre-seed" },
-  { value: "seed", label: "Seed" },
-  { value: "series-a", label: "Series A" },
+  { value: "Pre-seed", label: "Pre-seed" },
+  { value: "Seed", label: "Seed" },
+  { value: "Series A", label: "Series A" },
+  { value: "Series B", label: "Series B" },
+  { value: "Series C", label: "Series C" },
 ];
 
 interface PreferencesPanelProps {
@@ -47,7 +59,7 @@ export default function PreferencesPanel({
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
   const [stage, setStage] = useState<string>("");
   const [region, setRegion] = useState<string>("");
-  const [minTraction, setMinTraction] = useState<string>("");
+  const [minFunding, setMinFunding] = useState<string>("");
 
   const handleIndustryChange = (industryId: string, checked: boolean) => {
     if (checked) {
@@ -60,14 +72,23 @@ export default function PreferencesPanel({
   };
 
   const handleSubmit = () => {
-    const filters = {
-      industries: selectedIndustries,
-      stage,
-      region,
-      minTraction: minTraction ? Number.parseInt(minTraction) : 0,
-    };
+    const filters: any = {};
 
-    localStorage.setItem("investorFilters", JSON.stringify(filters));
+    if (selectedIndustries.length > 0) {
+      filters.industry = selectedIndustries;
+    }
+
+    if (stage) {
+      filters.stage = stage;
+    }
+
+    if (region) {
+      filters.location = region;
+    }
+
+    if (minFunding && parseInt(minFunding) > 0) {
+      filters.minFunding = parseInt(minFunding);
+    }
 
     onGetRecommendations(filters);
   };
@@ -122,10 +143,10 @@ export default function PreferencesPanel({
       </div>
 
       <div className="space-y-3">
-        <h4 className="font-medium">Geographic Region</h4>
+        <h4 className="font-medium">Location</h4>
         <Select value={region} onValueChange={setRegion}>
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select region" />
+            <SelectValue placeholder="Select location" />
           </SelectTrigger>
           <SelectContent>
             {regions.map((regionOption) => (
@@ -138,15 +159,15 @@ export default function PreferencesPanel({
       </div>
 
       <div className="space-y-3">
-        <h4 className="font-medium">Minimum Monthly Revenue</h4>
+        <h4 className="font-medium">Minimum Funding</h4>
         <Input
           type="number"
-          placeholder="e.g. 10000"
-          value={minTraction}
-          onChange={(e) => setMinTraction(e.target.value)}
+          placeholder="e.g. 1000000"
+          value={minFunding}
+          onChange={(e) => setMinFunding(e.target.value)}
           className="w-full"
         />
-        <p className="text-xs text-gray-500">Enter minimum MRR in USD</p>
+        <p className="text-xs text-gray-500">Enter minimum funding in USD</p>
       </div>
 
       <Button className="w-full" onClick={handleSubmit}>

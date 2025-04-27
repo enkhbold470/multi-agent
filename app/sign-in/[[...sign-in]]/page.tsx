@@ -1,7 +1,7 @@
 import { SignIn } from "@clerk/nextjs";
 import { Metadata } from "next";
 import Link from "next/link";
-import { TrendingUp } from "lucide-react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Sign In | Rest&Vest",
@@ -13,9 +13,7 @@ export default function SignInPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 py-12 dark:bg-gray-900 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="bg-purple-600 text-white w-12 h-12 rounded-md flex items-center justify-center">
-            <TrendingUp className="h-7 w-7" />
-          </div>
+          <Image src="/restnvest-logo.png" alt="Logo" width={60} height={60} />
         </div>
         <h1 className="mt-4 text-center text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-indigo-500 text-transparent bg-clip-text">
           Rest&Vest
